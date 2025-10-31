@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-  background-color: #099d8d;
+  background-image: url ("./images/fondocuaderno.jpg.jpg");
   height: 150px;
   margin: auto;
   display: flex;
