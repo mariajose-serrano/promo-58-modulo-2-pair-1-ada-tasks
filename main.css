@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-  background-image: url ("./images/fondocuaderno.jpg.jpg");
+  background-image: url("./images/fondocuaderno.jpg.jpg");
   height: 150px;
   margin: auto;
   display: flex;
@@ -18,7 +18,7 @@ body {
 }
 
 .title {
-  color: white;
+  color: rgb(38, 37, 37);
   text-align: center;
 }
 
@@ -73,7 +73,7 @@ h1 {
 
 .add-task-btn {
   padding: 10px 20px;
-  background-color: #14d9c4;
+  background-color: #d99667;
   color: #fff;
   border: none;
   border-radius: 5px;
