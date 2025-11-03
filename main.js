@@ -8,29 +8,25 @@ const tasksList = document.querySelector(".js_tasksList");
 // SECCIÓN DE DATOS
 // Aquí van los arrays y las variables que contantan datos de la aplicación
 
-const tasks = [
-  { name: "Recoger setas en el campo", completed: true, id: 1 },
-  { name: "Comprar pilas", completed: true, id: 2 },
-  { name: "Poner una lavadora de blancos", completed: true, id: 3 },
-  {
-    name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
-    completed: false,
-    id: 4,
-  },
-];
+let tasks = [];
 
+const GITHUB_USER = "s-minaya";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 // SECCIÓN DE FUNCIONES
 // Estos son funciones:
 //   - con código auxiliar
 //   - con código que usaremos en los eventos
 //   - para pintar (render) en la página.
 
+let oneTask = tasks[0];
+
 function renderAllTasks() {
-  for (const task of tasks) {
-    if (task.completed === true) {
-      tasksList.innerHTML += ` <li class="tachado">${task.name}</li>`;
+  tasksList.innerHTML = "";
+  for (const oneTask of tasks) {
+    if (oneTask.completed === true) {
+      tasksList.innerHTML += ` <li class="tachado">${oneTask.name}</li>`;
     } else {
-      tasksList.innerHTML += ` <li>${task.name}</li>`;
+      tasksList.innerHTML += ` <li>${oneTask.name}</li>`;
     }
   }
 }
@@ -45,4 +41,14 @@ function renderAllTasks() {
 //   - Pedir datos al servidor
 //   - Pintar (render) elementos en la página
 
-renderAllTasks();
+fetch(SERVER_URL)
+  .then((response) => response.json())
+
+  .then((data) => {
+    console.log(data);
+    tasks = data;
+    renderAllTasks();
+  })
+  .catch((error) => console.error("Error al cargar tareas:", error));
+//Completa el código;
+//Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
