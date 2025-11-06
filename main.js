@@ -9,12 +9,9 @@ const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 // SECCIÓN DE DATOS
 // Aquí van los arrays y las variables que contantan datos de la aplicación
 
-const tasks = [
-  
-];
+let tasks = [];
 
-const task = tasks[0];
-console.log(task);
+
 // SECCIÓN DE FUNCIONES
 // Estos son funciones:
 //   - con código auxiliar
@@ -36,7 +33,7 @@ function renderTasks() {
     }
   }
 }
-renderTasks();
+
 
 
 // SECCIÓN DE EVENTOS
@@ -50,11 +47,14 @@ renderTasks();
 //   - Pintar (render) elementos en la página
 
 fetch(SERVER_URL)
-  .then((res) => res.json())
+  .then((results) => results.json())
   .then((data) => {
-    // tu código aquí
+    tasks = data.results;
+     renderTasks();
   })
   .catch((err) => console.error(err));
+
+ 
 
 //Completa el código;
 //Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
