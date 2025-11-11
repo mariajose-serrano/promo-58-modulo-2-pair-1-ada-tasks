@@ -6,6 +6,10 @@ const tasksList = document.querySelector(".js_tasksList");
 
 const tasksInfo = document.querySelector(".js_tasksInfo");
 
+const addInput = document.querySelector(".js_addInput");
+
+const addTaskButton = document.querySelector(".js_addTaskButton");
+
 const GITHUB_USER = "CCristina";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
@@ -28,10 +32,6 @@ function renderTasksInfo() {
   //vamos a pintarlo. Interpolamos con ${}
   const summary = getTasksSummary();
   tasksInfo.innerHTML = `Tienes ${summary.total} tareas. ${summary.completed} Completadas. ${summary.pending} Por realizar.`;
-  console.log(summary.total);
-  console.log(summary.completed);
-  console.log(summary.pending);
-  console.log(summary);
 }
 
 // SECCIÓN DE FUNCIONES
@@ -78,3 +78,28 @@ fetch(SERVER_URL)
 
 //Completa el código;
 //Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
+
+const handleNewTask = (event) => {
+  event.preventDefault();
+
+  // 1. Recoge el nombre de la tarea
+
+  const taskName = addInput.value;
+
+  // 2. Crea un objeto para la nueva tarea
+  const newTask = {
+    name: taskName, // sustituye este string vacío por el nombre de la tarea nueva
+    completed: false,
+  };
+
+  // 3. Añade la nueva tarea al array de tareas
+
+  tasks.push(newTask);
+
+  // 4. Vuelve a pintar las tareas
+  //
+  renderTasksInfo();
+  renderTasks();
+};
+
+addTaskButton.addEventListener("click", handleNewTask);
